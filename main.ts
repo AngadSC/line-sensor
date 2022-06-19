@@ -45,7 +45,7 @@ function displayLETTER () {
         basic.showString("V")
     } else if (currentReading.compare("10110") == 0) {
         basic.showString("W")
-    } else if (currentReading.compare("10111") == 0) {
+    } else if (currentReading.compare("10111") == 1) {
         basic.showString("X")
     } else if (currentReading.compare("11000") == 0) {
         basic.showString("Y")
@@ -66,7 +66,6 @@ function displayLETTER () {
     }
 }
 function get_binary_string () {
-    currentReading = "0"
     for (let index = 0; index <= 4; index++) {
         if (sensorValues[index] >= threshold) {
             currentReading = "" + currentReading + "0"
@@ -78,10 +77,14 @@ function get_binary_string () {
 let sensorValues: number[] = []
 let currentReading = ""
 let threshold = 0
-threshold = 400
+threshold = 200
 basic.forever(function () {
-    displayLETTER()
+	
+})
+basic.forever(function () {
     sensorValues = AlphaBot2.AnalogRead()
+    currentReading = ""
     get_binary_string()
+    displayLETTER()
     serial.writeLine(currentReading)
 })
