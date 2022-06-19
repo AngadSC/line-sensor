@@ -80,8 +80,8 @@ let currentReading = ""
 let threshold = 0
 threshold = 400
 basic.forever(function () {
+    displayLETTER()
     sensorValues = AlphaBot2.AnalogRead()
     get_binary_string()
     serial.writeLine(currentReading)
-    displayLETTER()
 })
